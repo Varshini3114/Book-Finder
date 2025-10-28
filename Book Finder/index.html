@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Book Finder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">📚</span>
+        <h1>Book Finder</h1>
+      </div>
+      <p class="tagline">Search and browse books with a book-like design</p>
+    </header>
+
+    <main class="container">
+      <section class="search">
+        <form id="searchForm" aria-label="Book search">
+          <div class="row">
+            <div class="field">
+              <label for="title">Title</label>
+              <input id="title" name="title" type="text" placeholder="e.g., The Hobbit" autocomplete="off" />
+            </div>
+            <div class="field">
+              <label for="author">Author</label>
+              <input id="author" name="author" type="text" placeholder="e.g., J.R.R. Tolkien" autocomplete="off" />
+            </div>
+            <div class="field">
+              <label for="subject">Subject</label>
+              <input id="subject" name="subject" type="text" placeholder="e.g., fantasy" autocomplete="off" />
+            </div>
+          </div>
+          <div class="row">
+            <label class="check">
+              <input id="fulltext" name="fulltext" type="checkbox" />
+              <span>Only show ebooks (has full text)</span>
+            </label>
+            <div class="field">
+              <label for="sort">Sort</label>
+              <select id="sort" name="sort">
+                <option value="relevance">Relevance</option>
+                <option value="year_desc">Year (newest)</option>
+                <option value="year_asc">Year (oldest)</option>
+                <option value="title_asc">Title (A–Z)</option>
+              </select>
+            </div>
+            <button type="submit" class="btn">Search</button>
+          </div>
+        </form>
+        <div class="examples" aria-hidden="false">
+          Try:
+          <button class="chip" data-q-title="Harry Potter" data-q-subject="fantasy">Harry Potter</button>
+          <button class="chip" data-q-title="The Hobbit" data-q-author="J.R.R. Tolkien">The Hobbit</button>
+          <button class="chip" data-q-subject="science fiction">Science Fiction</button>
+          <div id="recent" class="recent"></div>
+        </div>
+      </section>
+
+      <section class="tabs">
+        <button class="tab active" data-tab="results">Results</button>
+        <button class="tab" data-tab="favorites">Favorites</button>
+      </section>
+
+      <section class="results" aria-live="polite" aria-busy="false">
+        <div class="meta-bar">
+          <span id="count">Ready</span>
+          <button id="loadMore" class="btn ghost" hidden>Load more</button>
+        </div>
+        <div id="results" class="shelf" role="list"></div>
+        <div id="favorites" class="shelf" role="list" hidden></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <small>Data from Open Library · <a href="https://openlibrary.org/" target="_blank" rel="noreferrer">openlibrary.org</a></small>
+    </footer>
+
+    <noscript>Please enable JavaScript to use Book Finder.</noscript>
+    <script src="app.js" defer></script>
+  </body>
+</html>
